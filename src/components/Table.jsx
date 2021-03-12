@@ -14,6 +14,11 @@ class Table extends Component {
 
   addRow = () => this.setState({ numRows: this.state.numRows + 1 })
   addCol = () => this.setState({ numCols: this.state.numCols + 1 })
+  minusRow = () => {
+    if(this.state.numRows > 0){
+      this.setState({numRows: this.state.numRows - 1 });}
+  }
+
 
   render() {
     let rows = [];
@@ -26,6 +31,7 @@ class Table extends Component {
         <div id="row-button">
           Rows
           <button onClick={this.addRow}> + </button>
+          <button onClick={this.minusRow}> - </button>
         </div>
          <div id="col-button">
           Cols
