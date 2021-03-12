@@ -12,11 +12,16 @@ class Table extends Component {
       };
   }
 
-  addRow = () => this.setState({ numRows: this.state.numRows + 1 })
+  addRow = () => this.setState({ numRows: this.state.numRows + 1})
   addCol = () => this.setState({ numCols: this.state.numCols + 1 })
   minusRow = () => {
     if(this.state.numRows > 0){
-      this.setState({numRows: this.state.numRows - 1 });}
+      this.setState({numRows: this.state.numRows - 1 });
+    }
+  }
+  minusCol = () => {
+    if(this.state.numCols > 0){
+      this.setState({numCols: this.state.numCols - 1 });}
   }
 
 
@@ -35,7 +40,8 @@ class Table extends Component {
         </div>
          <div id="col-button">
           Cols
-          <button onClick={this.addCol}> + </button>
+           <button onClick={this.addCol}> + </button>
+           <button onClick={this.minusCol}> - </button>
         </div>
         <div>
           <table id="cells">
