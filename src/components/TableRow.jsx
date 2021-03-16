@@ -1,17 +1,12 @@
-import React, { Component } from "react";
-import TableCell from './TableCell.jsx';
+import TableCell from "./TableCell";
 
-class TableRow extends Component {
-  constructor(props){
-    super();
-  }
-  render(){
+function TableRow(props) {
   let cells = [];
-    for (let i = 0; i < this.props.cols; i++) {
-      cells.push(<TableCell key={i} cellColor={this.props.cellColor}/>);
+
+  for (let i = 0; i < props.numCols; i++) {
+    cells.push(<TableCell handleApplyColor={props.handleApplyColor} />);
   }
-    return <tr>{cells}</tr>;
-  }
+  return <tr>{cells}</tr>;
 }
 
 export default TableRow;
