@@ -1,12 +1,22 @@
 import TableCell from "./TableCell";
+import React, { Component } from "react";
 
-function TableRow(props) {
-  let cells = [];
-
-  for (let i = 0; i < props.numCols; i++) {
-    cells.push(<TableCell handleApplyColor={props.handleApplyColor} />);
+class TableRow extends Component {
+  constructor(props) {
+    super();
+    this.state =
+      {
+        data: "HIHIHIH"
+      };
   }
-  return <tr>{cells}</tr>;
+  render() {
+    this.cells = [];
+
+    for (let i = 0; i < this.props.numCols; i++) {
+      this.cells.push(<TableCell key={i} handleApplyColor={this.props.handleApplyColor} />);
+    }
+    return <tr>{this.cells}</tr>;
+  }
 }
 
 export default TableRow;
