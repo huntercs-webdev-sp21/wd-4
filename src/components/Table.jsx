@@ -4,12 +4,15 @@ import TableRow from './TableRow.jsx';
 class Table extends Component {
   constructor() {
     super();
+    this.table = React.createRef();
     this.state =
       {
         numRows: 1,
         numCols: 1,
         selectedColor: 'white',
+        clearAll: false,
       };
+    this.rows = [];
   }
 
   addRow = () => this.setState({ numRows: this.state.numRows + 1})
@@ -29,13 +32,30 @@ class Table extends Component {
 
   handleApplyColor = (event) => {
     event.target.style.backgroundColor = this.state.selectedColor;
+
   }
+
+  handleClearAll = (event) => {
+    this.clearAllCells();
+  }
+
+  getAllCells = () => {
+    let body = this.table.current.children[0];
+    return Array.from(body.children)
+      .map(tr => Array.from(tr.children))
+      .flat();
+  }
+
+  clearAllCells = () => {
+    this.getAllCells().forEach(cell => cell.style.backgroundColor = "");
+}
+
 
 
   render() {
-    let rows = [];
+    this.rows = [];
     for(let i = 0; i < this.state.numRows; i++){
-      rows.push(<TableRow key={i} numCols={this.state.numCols} handleApplyColor={this.handleApplyColor}/>);
+      this.rows.push(<TableRow key={i} numCols={this.state.numCols} handleApplyColor={this.handleApplyColor}/>);
     }
     return (
       <div id ="container">
@@ -50,6 +70,7 @@ class Table extends Component {
            <button onClick={this.addCol}> + </button>
            <button onClick={this.minusCol}> - </button>
          </div>
+        <button onClick={this.handleClearAll}> Clear All </button>
         <select onChange={this.handleColorChange}>
           <option value="white">White</option>
           <option value="red">Red</option>
@@ -60,10 +81,10 @@ class Table extends Component {
           <option value="orange">Orange</option>
         </select>
         <div>
-          <table id="cells">
-            <tbody>
+          <table id="cells"  ref={this.table}>
 
-              {rows}
+            <tbody>
+              {this.rows}
             </tbody>
           </table>
         </div>
