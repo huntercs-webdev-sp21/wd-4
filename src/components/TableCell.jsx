@@ -1,21 +1,5 @@
-import React, { Component } from "react";
-
-class TableCell extends Component {
-  constructor(props){
-    super();
-    this.state = {cellColor:props.cellColor};
-  }
-
-
-  render() {
-
-        return (
-            <td
-              style={{backgroundColor: this.state.cellColor}}
-            ></td>
-        );
-  }
-
+function TableCell(props) {
+  return <td onClick={props.handleApplyColor}></td>;
 }
 
 export default TableCell;

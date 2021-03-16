@@ -23,12 +23,19 @@ class Table extends Component {
     if(this.state.numCols > 0){
       this.setState({numCols: this.state.numCols - 1 });}
   }
+  handleColorChange = (event) => {
+    this.setState({selectedColor: event.target.value});
+  }
+
+  handleApplyColor = (event) => {
+    event.target.style.backgroundColor = this.state.selectedColor;
+  }
 
 
   render() {
     let rows = [];
     for(let i = 0; i < this.state.numRows; i++){
-      rows.push(<TableRow key={i} cols={this.state.numCols} cellColor={this.state.selectedColor}/>);
+      rows.push(<TableRow key={i} numCols={this.state.numCols} handleApplyColor={this.handleApplyColor}/>);
     }
     return (
       <div id ="container">
@@ -42,7 +49,16 @@ class Table extends Component {
           Cols
            <button onClick={this.addCol}> + </button>
            <button onClick={this.minusCol}> - </button>
-        </div>
+         </div>
+        <select onChange={this.handleColorChange}>
+          <option value="white">White</option>
+          <option value="red">Red</option>
+          <option value="blue">Blue</option>
+          <option value="yellow">Yellow</option>
+          <option value="purple">Purple</option>
+          <option value="green">Green</option>
+          <option value="orange">Orange</option>
+        </select>
         <div>
           <table id="cells">
             <tbody>
@@ -51,9 +67,7 @@ class Table extends Component {
             </tbody>
           </table>
         </div>
-      </div>
-
-    );
+      </div>    );
   }
 }
 
