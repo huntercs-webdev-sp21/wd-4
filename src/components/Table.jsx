@@ -9,7 +9,7 @@ class Table extends Component {
       {
         numRows: 1,
         numCols: 1,
-        selectedColor: 'white',
+        selectedColor: 'red',
         clearAll: false,
       };
     this.rows = [];
@@ -55,6 +55,13 @@ class Table extends Component {
     this.getAllCells().forEach(cell => cell.style.backgroundColor = this.state.selectedColor);
   }
 
+  fillUncoloredCells = () => {
+    this.getAllCells().forEach(cell => {
+      if (cell.style.backgroundColor === "")
+        cell.style.backgroundColor = this.state.selectedColor;
+    });
+  }
+
   render() {
     this.rows = [];
     for (let i = 0; i < this.state.numRows; i++) {
@@ -76,15 +83,16 @@ class Table extends Component {
         <div>
           <button onClick={this.handleClearAll}> Clear All </button>
           <button onClick={this.fillAllCells}> Fill All </button>
+          <button onClick={this.fillUncoloredCells}> Fill Uncolored </button>
         </div>
         <select onChange={this.handleColorChange}>
-          <option value="white">White</option>
           <option value="red">Red</option>
           <option value="blue">Blue</option>
           <option value="yellow">Yellow</option>
           <option value="purple">Purple</option>
           <option value="green">Green</option>
           <option value="orange">Orange</option>
+          <option value="white">White</option>
         </select>
         <div>
           <table id="cells" ref={this.table}>
