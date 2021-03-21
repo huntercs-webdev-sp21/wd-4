@@ -55,6 +55,13 @@ class Table extends Component {
     this.getAllCells().forEach(cell => cell.style.backgroundColor = this.state.selectedColor);
   }
 
+  fillUncoloredCells = () => {
+    this.getAllCells().forEach(cell => {
+      if (cell.style.backgroundColor === "")
+        cell.style.backgroundColor = this.state.selectedColor;
+    });
+  }
+
   render() {
     this.rows = [];
     for (let i = 0; i < this.state.numRows; i++) {
@@ -76,6 +83,7 @@ class Table extends Component {
         <div>
           <button onClick={this.handleClearAll}> Clear All </button>
           <button onClick={this.fillAllCells}> Fill All </button>
+          <button onClick={this.fillUncoloredCells}> Fill Uncolored </button>
         </div>
         <select onChange={this.handleColorChange}>
           <option value="white">White</option>
