@@ -9,7 +9,7 @@ class Table extends Component {
       {
         numRows: 1,
         numCols: 1,
-        selectedColor: 'white',
+        selectedColor: 'red',
         clearAll: false,
       };
     this.rows = [];
@@ -86,13 +86,13 @@ class Table extends Component {
           <button onClick={this.fillUncoloredCells}> Fill Uncolored </button>
         </div>
         <select onChange={this.handleColorChange}>
-          <option value="white">White</option>
           <option value="red">Red</option>
           <option value="blue">Blue</option>
           <option value="yellow">Yellow</option>
           <option value="purple">Purple</option>
           <option value="green">Green</option>
           <option value="orange">Orange</option>
+          <option value="white">White</option>
         </select>
         <div>
           <table id="cells" ref={this.table}>
